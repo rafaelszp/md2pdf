@@ -1,17 +1,17 @@
 #!/bin/bash
 
-# Verifica se o usuário passou o arquivo
+# Check if the user provided the file
 if [ -z "$1" ]; then
-  echo "Erro: Você esqueceu de informar o arquivo Markdown."
-  echo "Uso correto: md2pdf nome_do_arquivo.md"
+  echo "Error: You forgot to specify the Markdown file."
+  echo "Correct usage: md2pdf filename.md"
   exit 1
 fi
 
-# Descobre o caminho absoluto do arquivo (evita erros se você usar '../pasta/arquivo.md')
+# Discover the absolute path of the file (avoids errors if you use '../folder/file.md')
 CAMINHO_ABSOLUTO=$(readlink -f "$1")
 PASTA_DO_ARQUIVO=$(dirname "$CAMINHO_ABSOLUTO")
 NOME_DO_ARQUIVO=$(basename "$CAMINHO_ABSOLUTO")
 
-# Executa o Docker mapeando a pasta exata onde o arquivo está
-echo "Convertendo '$NOME_DO_ARQUIVO' para PDF..."
+# Run Docker mapping the exact folder where the file is located
+echo "Converting '$NOME_DO_ARQUIVO' to PDF..."
 docker run --rm -v "$PASTA_DO_ARQUIVO":/workspace md2pdf "$NOME_DO_ARQUIVO"

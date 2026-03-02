@@ -4,16 +4,21 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Instala as dependências do sistema necessárias para o WeasyPrint
-# Instala as dependências do sistema e as fontes de emoji
+
+# Instala as dependências, fontconfig, e as fontes
 RUN apt-get update && apt-get install -y \
-        libpango-1.0-0 \
-        libpangoft2-1.0-0 \
-        libffi-dev \
-        libjpeg-dev \
-        libopenjp2-7-dev \
-        fonts-noto-color-emoji \
-        && rm -rf /var/lib/apt/lists/*
+    libpango-1.0-0 \
+    libpangoft2-1.0-0 \
+    libffi-dev \
+    libjpeg-dev \
+    libopenjp2-7-dev \
+    fontconfig \
+    fonts-noto-color-emoji \
+    fonts-hack \
+    fonts-liberation \
+    fonts-dejavu \
+    && fc-cache -f -v \
+    && rm -rf /var/lib/apt/lists/*  && rm -rf /var/lib/apt/lists/*
 # Instala os pacotes Python
 RUN pip install --no-cache-dir Markdown WeasyPrint Pygments
 
