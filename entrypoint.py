@@ -43,6 +43,7 @@ html_content = f"""
     <meta charset="UTF-8">
     <style>
         {pygments_css}
+        .codehilite .err {{ border: none; }}
 
         @page {{ size: A4; margin: 2cm; }}
 
@@ -52,8 +53,14 @@ html_content = f"""
             unicode-range: U+2600-27BF, U+1F300-1F9FF, U+1FA70-1FAFF;
         }}
 
+        @font-face {{
+            font-family: 'BoxDraw';
+            src: url('file:///usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf');
+            unicode-range: U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF, U+2700-27BF, U+27F0-27FF, U+2B00-2BFF;
+        }}
+
         body {{
-            font-family: "Hack", monospace, "OnlyEmojis";
+            font-family: "Hack", "BoxDraw", "DejaVu Sans Mono", monospace, "OnlyEmojis";
             line-height: 1.6;
             color: #333;
         }}
@@ -62,7 +69,7 @@ html_content = f"""
         th, td {{ border: 1px solid #ddd; padding: 8px; text-align: left; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }}
         th {{ background-color: #f2f2f2; }}
 
-        pre, code {{ font-family: "Hack", monospace, "OnlyEmojis"; }}
+        pre, code {{ font-family: "Hack", "DejaVu Sans Mono", monospace, "OnlyEmojis"; }}
         .codehilite {{ background: #f8f8f8; padding: 15px; border-radius: 8px; margin-bottom: 20px; }}
         .codehilite pre {{ margin: 0; white-space: pre-wrap; word-wrap: break-word; }}
         code {{ background: #f4f4f4; padding: 2px 5px; border-radius: 4px; font-size: 0.9em; }}
