@@ -70,9 +70,10 @@ html_content = f"""
         th {{ background-color: #f2f2f2; }}
 
         pre, code {{ font-family: "Hack", "DejaVu Sans Mono", monospace, "OnlyEmojis"; }}
-        .codehilite {{ background: #f8f8f8; padding: 15px; border-radius: 8px; margin-bottom: 20px; }}
-        .codehilite pre {{ margin: 0; white-space: pre-wrap; word-wrap: break-word; }}
+        .codehilite {{ background: #f8f8f8; padding: 15px; border-radius: 8px; margin-bottom: 20px; overflow: hidden; }}
+        .codehilite pre {{ margin: 0; white-space: pre; font-size: 0.7em; }}
         code {{ background: #f4f4f4; padding: 2px 5px; border-radius: 4px; font-size: 0.9em; }}
+        .codehilite code {{ background: none; padding: 0; border-radius: 0; font-size: inherit; }}
 
         /* Visual guarantee for lists */
         ul, ol {{ margin-top: 1em; margin-bottom: 1em; padding-left: 40px; display: block; }}
