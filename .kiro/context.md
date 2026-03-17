@@ -23,6 +23,20 @@ Ferramenta CLI Docker-based que converte Markdown → PDF usando Python, WeasyPr
 
 **Commit:** e423dd6
 
+### Diagramas ASCII quebrando no PDF (2026-03-17)
+
+**Problema:** Diagramas ASCII largos (ex: fluxogramas com múltiplas colunas de boxes) ficavam completamente quebrados no PDF — linhas partidas, caracteres desalinhados.
+
+**Causa raiz:** Duas coisas:
+1. `white-space: pre-wrap` + `word-wrap: break-word` no `.codehilite pre` quebravam linhas do diagrama para caber na página, destruindo o alinhamento.
+2. `font-size: 0.9em` e `padding: 2px 5px` no `code` afetavam o `<code>` dentro de `.codehilite pre`, alterando o espaçamento.
+
+**Solução:**
+- `.codehilite pre`: trocado `pre-wrap` por `pre`, removido `word-wrap`, adicionado `font-size: 0.7em` para diagramas largos caberem na página A4.
+- `.codehilite`: adicionado `overflow: hidden` como safety net.
+- `.codehilite code`: reset de background, padding, border-radius e font-size para não interferir no espaçamento mono.
+- Trade-off: fonte menor em code blocks (0.7em) para acomodar diagramas largos.
+
 ## Detalhes Técnicos
 
 - Fontes: Hack (principal) → DejaVu Sans Mono (fallback) → monospace → OnlyEmojis
